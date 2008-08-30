@@ -1,5 +1,9 @@
 Revision history for Geo-Direction-Name
 
+0.0.2  Sun Aug 31 2008
+       Add Test::Base to require modules
+       Write some more PODs
+
 0.0.1  Mon Jan 28 04:20:17 2008
        Initial release.
 

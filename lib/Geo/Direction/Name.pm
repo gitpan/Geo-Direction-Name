@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-use version; our $VERSION = qv('0.0.1');
+use version; our $VERSION = qv('0.0.2');
 use Scalar::Util qw(looks_like_number);
 use Class::Inspector;
 use UNIVERSAL::require;
@@ -156,7 +156,7 @@ LOCALE is optional, default is "en_US".
 =back
 
 
-=head1 METHOD
+=head1 METHODS
 
 =over 4
 
@@ -185,6 +185,18 @@ Default is 8.
 Transform direction name (STRING) to direction degree by specified locale.
 
 =back
+
+
+=head1 INTERNAL METHODS
+
+=over 4
+
+=item * locale
+
+=item * load
+
+=back
+
 
 =head1 DEPENDENCIES
 
