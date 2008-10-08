@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-use version; our $VERSION = qv('0.0.2');
+use version; our $VERSION = qv('0.0.3');
 use Scalar::Util qw(looks_like_number);
 use Class::Inspector;
 use UNIVERSAL::require;

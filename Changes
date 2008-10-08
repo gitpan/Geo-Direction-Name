@@ -1,5 +1,8 @@
 Revision history for Geo-Direction-Name
 
+0.0.3  Thu Oct 09 2008
+       Fix the error of test in Windows environment
+
 0.0.2  Sun Aug 31 2008
        Add Test::Base to require modules
        Write some more PODs
