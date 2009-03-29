@@ -1,4 +1,4 @@
-package Geo::Direction::Name::Locale::ja;
+package Geo::Direction::Name::Locale::zh_CN;
 
 use warnings;
 use strict;
@@ -17,36 +17,36 @@ BEGIN
 sub dir_string {
 [
     '北',
-    '北微東',
-    '北北東',
-    '北東微北',
-    '北東',
-    '北東微東',
-    '東北東',
-    '東微北',
-    '東',
-    '東微南',
-    '東南東',
-    '南東微東',
-    '南東',
-    '南東微南',
-    '南南東',
-    '南微東',
+    '北微东',
+    '东北偏北',
+    '东北微北',
+    '东北',
+    '东北微东',
+    '东北偏东',
+    '东微北',
+    '东',
+    '东微南',
+    '东南偏东',
+    '东南微东',
+    '东南',
+    '东南微南',
+    '东南偏南',
+    '南微东',
     '南',
     '南微西',
-    '南南西',
-    '南西微南',
-    '南西',
-    '南西微西',
-    '西南西',
+    '西南偏南',
+    '西南微南',
+    '西南',
+    '西南微西',
+    '西南偏西',
     '西微南',
     '西',
     '西微北',
-    '西北西',
-    '北西微西',
-    '北西',
-    '北西微北',
-    '北北西',
+    '西北偏西',
+    '西北微西',
+    '西北',
+    '西北微北',
+    '西北偏北',
     '北微西',
 ]
 }
@@ -55,7 +55,7 @@ sub dir_string {
 
 =head1 NAME
 
-Geo::Direction::Name::Locale::ja - Locale 'ja' class of Geo::Direction::Name's locale class.
+Geo::Direction::Name::Locale::zh_CN - Locale 'zh_CN' class of Geo::Direction::Name's locale class.
 
 
 =head1 OVERRIDE METHODS

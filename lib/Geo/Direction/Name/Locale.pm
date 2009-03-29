@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-use version; our $VERSION = qv('0.0.2');
+use version; our $VERSION = qv('0.0.4');
 
 BEGIN
 {
@@ -15,21 +15,24 @@ BEGIN
 }
 
 sub new {
-    my $class  = shift;
+    my $class = shift;
+    my $dev   = shift || 32;
 
     my $dir  = $class->dir_string();
     my $abbr = $class->abbr_string();
 
+    my $dev1 = $dev - 1;
     my %dirs = ();
     my @strs = map { 
         $dirs{lc($dir->[$_])}  = $_;
         $dirs{lc($abbr->[$_])} = $_;
         [ $dir->[$_], $abbr->[$_],] 
-    } (0..31);
+    } (0..$dev1);
 
     bless {
         dirs => \%dirs,
         strs => \@strs,
+        dev  => $dev, 
     }, $class;
 }
 
@@ -46,7 +49,7 @@ sub direction {
 
     my $i = $self->{dirs}->{lc($str)};
     return unless (defined($i));
-    return $i * 11.25;
+    return $i * 360.0 / $self->{dev};
 }
 
 sub dir_string {

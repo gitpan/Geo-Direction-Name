@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-use version; our $VERSION = qv('0.0.3');
+use version; our $VERSION = qv('0.0.4');
 use Scalar::Util qw(looks_like_number);
 use Class::Inspector;
 use UNIVERSAL::require;
@@ -18,74 +18,64 @@ BEGIN
 }
 
 sub new {
-    my $class  = shift;
-    my $locale = shift || "en_US";
+    my ( $class, $opt ) = @_;
 
     my $self = bless {}, $class;
 
-    $self->locale($locale);
+    my $spec;
+    my $locale;
+    if ( $opt && ref($opt) ) {
+        $spec   = $opt->{spec};
+        $locale = $opt->{locale};
+    } else {
+        # For backward compatibility
+        $locale = $opt;
+    }
+
+    $self->spec(   $spec );
+    $self->locale( $locale );
 
     $self;
 }
 
-sub locale {
-    my $self = shift;
-    if ($_[0]) {
-        my $locale = Geo::Direction::Name->load($_[0]);
-
-        croak("Geo::Direction::Name not support this locale now: " . $_[0]) unless ($locale);
-
-        $self->{locale} = $locale;
+sub spec   {
+    my $self   =   shift;
+    my $spec   =   shift;
+    my $noerr  =   shift;
+    my $errstr =   "Specification class(subclass of Geo::Direction::Name::Spec) must be set";
+    $spec      ||= 'default' unless ( $self->{spec} );
+    
+    if ( $spec ) {
+        $errstr = "Geo::Direction::Name not support this specification now: " . $spec;
+        delete $self->{spec};
+        my $class = __PACKAGE__ . '::Spec' . ( $spec eq 'default' ? '' : '::' . ucfirst($spec) ) ;
+        if( Class::Inspector->loaded($class) || $class->require ) {
+            $self->{spec} = $class->new;
+        }
     }
 
-    $self->{locale};
+    croak $errstr unless ( $noerr || $self->{spec} );
+    $self->{spec};
+}
+
+sub locale {
+    my $self   = shift;
+
+    $self->spec->locale( @_ );
 }
  
 sub to_string   {
     my $self      = shift;
-    my $direction = shift;
-    my $option    = shift || {};
 
-    my $abbr      = defined($option->{abbreviation}) ? $option->{abbreviation} : 1;
-    my $devide    = $option->{devide} || 8;
-
-    croak ("Direction value must be a number") unless (looks_like_number($direction));
-    croak ("Abbreviation parameter must be 0 or 1") if ( $abbr !~ /^[01]$/ );
-    my $log2 = log($devide)/log(2);
-    croak ("Devide parameter must be 4, 8, 16 or 32") if ( $log2 !~ /^[2345]$/ );
-
-    $direction   += 180 / $devide;
-
-    while ($direction < 0.0 || $direction >= 360.0) {
-        $direction +=  $direction < 0 ? 360.0 : -360.0;
-    }
-
-    my $i = int($direction * $devide / 360) * (32 / $devide);
-
-    $self->locale->string($i,$abbr);
+    $self->spec->to_string( @_ );
 }
 
 sub from_string {
     my $self      = shift;
-    my $string    = shift;
 
-    $self->locale->direction($string);
+    $self->spec->from_string( @_ );
 }
 
-sub load {
-    my $class  = shift;
-    my $locale = shift;
-
-    ($locale)  = split(/\./,$locale);
-    my ($lang) = split(/_/,$locale);
-
-    foreach my $class (map { "Geo::Direction::Name::Locale::" . $_ } ($locale, $lang)) {
-        if( Class::Inspector->loaded($class) || $class->require) {
-            return $class->new;
-        }
-    }
-    return;
-}
 
 1; # Magic true value required at end of module
 __END__
@@ -150,8 +140,28 @@ ko_KR.
 
 =item * new( [LOCALE] )
 
+Old interface (Backward compatible).
 Return the Geo::Direction::Name object.
 LOCALE is optional, default is "en_US".
+
+=item * new( [OPTION] )
+
+New interface.
+OPTION is hash reference, could be set two values.
+Default specification is used.
+
+=over 8
+
+=item * spec
+
+Set original spec name if want.
+If not set, use default specification.
+
+=item * locale
+
+Set locale.
+
+=back
 
 =back
 
@@ -178,6 +188,9 @@ Set how many parts to devide 360 degrees.
 You can set only 4, 8, 16 or 32.
 Default is 8.
 
+After version 0.0.4, you can set other deviding number by using non-default specification.
+
+
 =back
 
 =item * from_string( STRING )
@@ -190,6 +203,8 @@ Transform direction name (STRING) to direction degree by specified locale.
 =head1 INTERNAL METHODS
 
 =over 4
+
+=item * spec
 
 =item * locale
 

@@ -17,7 +17,7 @@ run {
     my ($dir,$dev)  = split(/\n/,$block->input);
     my ($str)       = split(/\n/,$block->expected);
 
-    my $dobj        = Geo::Direction::Name->new("ja_JP");
+    my $dobj        = Geo::Direction::Name->new("zh_CN");
 
     is $dobj->to_string($dir,{ devide => $dev, abbreviation => 0 }) ,$str;
     is $dobj->to_string($dir,{ devide => $dev, abbreviation => 1 }) ,$str;
@@ -71,14 +71,14 @@ __END__
 11.250
 16
 --- expected
-北北東
+东北偏北
 
 ===
 --- input
 11.250
 32
 --- expected
-北微東
+北微东
 
 ===
 --- input
@@ -92,21 +92,21 @@ __END__
 22.500
 8
 --- expected
-北東
+东北
 
 ===
 --- input
 22.500
 16
 --- expected
-北北東
+东北偏北
 
 ===
 --- input
 22.500
 32
 --- expected
-北北東
+东北偏北
 
 ===
 --- input
@@ -120,245 +120,245 @@ __END__
 33.750
 8
 --- expected
-北東
+东北
 
 ===
 --- input
 33.750
 16
 --- expected
-北東
+东北
 
 ===
 --- input
 33.750
 32
 --- expected
-北東微北
+东北微北
 
 ===
 --- input
 45.000
 4
 --- expected
-東
+东
 
 ===
 --- input
 45.000
 8
 --- expected
-北東
+东北
 
 ===
 --- input
 45.000
 16
 --- expected
-北東
+东北
 
 ===
 --- input
 45.000
 32
 --- expected
-北東
+东北
 
 ===
 --- input
 56.250
 4
 --- expected
-東
+东
 
 ===
 --- input
 56.250
 8
 --- expected
-北東
+东北
 
 ===
 --- input
 56.250
 16
 --- expected
-東北東
+东北偏东
 
 ===
 --- input
 56.250
 32
 --- expected
-北東微東
+东北微东
 
 ===
 --- input
 67.500
 4
 --- expected
-東
+东
 
 ===
 --- input
 67.500
 8
 --- expected
-東
+东
 
 ===
 --- input
 67.500
 16
 --- expected
-東北東
+东北偏东
 
 ===
 --- input
 67.500
 32
 --- expected
-東北東
+东北偏东
 
 ===
 --- input
 78.750
 4
 --- expected
-東
+东
 
 ===
 --- input
 78.750
 8
 --- expected
-東
+东
 
 ===
 --- input
 78.750
 16
 --- expected
-東
+东
 
 ===
 --- input
 78.750
 32
 --- expected
-東微北
+东微北
 
 ===
 --- input
 90.000
 4
 --- expected
-東
+东
 
 ===
 --- input
 90.000
 8
 --- expected
-東
+东
 
 ===
 --- input
 90.000
 16
 --- expected
-東
+东
 
 ===
 --- input
 90.000
 32
 --- expected
-東
+东
 
 ===
 --- input
 101.250
 4
 --- expected
-東
+东
 
 ===
 --- input
 101.250
 8
 --- expected
-東
+东
 
 ===
 --- input
 101.250
 16
 --- expected
-東南東
+东南偏东
 
 ===
 --- input
 101.250
 32
 --- expected
-東微南
+东微南
 
 ===
 --- input
 112.500
 4
 --- expected
-東
+东
 
 ===
 --- input
 112.500
 8
 --- expected
-南東
+东南
 
 ===
 --- input
 112.500
 16
 --- expected
-東南東
+东南偏东
 
 ===
 --- input
 112.500
 32
 --- expected
-東南東
+东南偏东
 
 ===
 --- input
 123.750
 4
 --- expected
-東
+东
 
 ===
 --- input
 123.750
 8
 --- expected
-南東
+东南
 
 ===
 --- input
 123.750
 16
 --- expected
-南東
+东南
 
 ===
 --- input
 123.750
 32
 --- expected
-南東微東
+东南微东
 
 ===
 --- input
@@ -372,21 +372,21 @@ __END__
 135.000
 8
 --- expected
-南東
+东南
 
 ===
 --- input
 135.000
 16
 --- expected
-南東
+东南
 
 ===
 --- input
 135.000
 32
 --- expected
-南東
+东南
 
 ===
 --- input
@@ -400,21 +400,21 @@ __END__
 146.250
 8
 --- expected
-南東
+东南
 
 ===
 --- input
 146.250
 16
 --- expected
-南南東
+东南偏南
 
 ===
 --- input
 146.250
 32
 --- expected
-南東微南
+东南微南
 
 ===
 --- input
@@ -435,14 +435,14 @@ __END__
 157.500
 16
 --- expected
-南南東
+东南偏南
 
 ===
 --- input
 157.500
 32
 --- expected
-南南東
+东南偏南
 
 ===
 --- input
@@ -470,7 +470,7 @@ __END__
 168.750
 32
 --- expected
-南微東
+南微东
 
 ===
 --- input
@@ -519,7 +519,7 @@ __END__
 191.250
 16
 --- expected
-南南西
+西南偏南
 
 ===
 --- input
@@ -540,21 +540,21 @@ __END__
 202.500
 8
 --- expected
-南西
+西南
 
 ===
 --- input
 202.500
 16
 --- expected
-南南西
+西南偏南
 
 ===
 --- input
 202.500
 32
 --- expected
-南南西
+西南偏南
 
 ===
 --- input
@@ -568,21 +568,21 @@ __END__
 213.750
 8
 --- expected
-南西
+西南
 
 ===
 --- input
 213.750
 16
 --- expected
-南西
+西南
 
 ===
 --- input
 213.750
 32
 --- expected
-南西微南
+西南微南
 
 ===
 --- input
@@ -596,21 +596,21 @@ __END__
 225.000
 8
 --- expected
-南西
+西南
 
 ===
 --- input
 225.000
 16
 --- expected
-南西
+西南
 
 ===
 --- input
 225.000
 32
 --- expected
-南西
+西南
 
 ===
 --- input
@@ -624,21 +624,21 @@ __END__
 236.250
 8
 --- expected
-南西
+西南
 
 ===
 --- input
 236.250
 16
 --- expected
-西南西
+西南偏西
 
 ===
 --- input
 236.250
 32
 --- expected
-南西微西
+西南微西
 
 ===
 --- input
@@ -659,14 +659,14 @@ __END__
 247.500
 16
 --- expected
-西南西
+西南偏西
 
 ===
 --- input
 247.500
 32
 --- expected
-西南西
+西南偏西
 
 ===
 --- input
@@ -743,7 +743,7 @@ __END__
 281.250
 16
 --- expected
-西北西
+西北偏西
 
 ===
 --- input
@@ -764,21 +764,21 @@ __END__
 292.500
 8
 --- expected
-北西
+西北
 
 ===
 --- input
 292.500
 16
 --- expected
-西北西
+西北偏西
 
 ===
 --- input
 292.500
 32
 --- expected
-西北西
+西北偏西
 
 ===
 --- input
@@ -792,21 +792,21 @@ __END__
 303.750
 8
 --- expected
-北西
+西北
 
 ===
 --- input
 303.750
 16
 --- expected
-北西
+西北
 
 ===
 --- input
 303.750
 32
 --- expected
-北西微西
+西北微西
 
 ===
 --- input
@@ -820,21 +820,21 @@ __END__
 315.000
 8
 --- expected
-北西
+西北
 
 ===
 --- input
 315.000
 16
 --- expected
-北西
+西北
 
 ===
 --- input
 315.000
 32
 --- expected
-北西
+西北
 
 ===
 --- input
@@ -848,21 +848,21 @@ __END__
 326.250
 8
 --- expected
-北西
+西北
 
 ===
 --- input
 326.250
 16
 --- expected
-北北西
+西北偏北
 
 ===
 --- input
 326.250
 32
 --- expected
-北西微北
+西北微北
 
 ===
 --- input
@@ -883,14 +883,14 @@ __END__
 337.500
 16
 --- expected
-北北西
+西北偏北
 
 ===
 --- input
 337.500
 32
 --- expected
-北北西
+西北偏北
 
 ===
 --- input
